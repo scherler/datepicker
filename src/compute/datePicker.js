@@ -1,5 +1,5 @@
-import { timeMonth, timeWeek } from "d3-time";
-import { generateSuggestedKey } from "../helper";
+import { timeMonth, timeWeek } from 'd3-time';
+import { generateSuggestedKey } from '../helper';
 
 /**
  * Compute day cell size according to
@@ -18,8 +18,8 @@ export const computeCellSize = ({ daySpacing, offset, totalDays, width, height, 
   return {
     columns,
     rows,
-    cellHeight: squares?Math.min(cellHeight, cellWidth):cellHeight,
-    cellWidth: squares?Math.min(cellHeight, cellWidth):cellWidth
+    cellHeight: squares ? Math.min(cellHeight, cellWidth) : cellHeight,
+    cellWidth: squares ? Math.min(cellHeight, cellWidth) : cellWidth,
   };
 };
 
@@ -48,9 +48,7 @@ export const computeTotalDays = ({ startDate }) => {
   const nextMonth = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 1);
   nextMonth.setDate(6 - lastOfMonth.getDay());
   const daysNextMonth = [...Array(6 - lastOfMonth.getDay()).keys()]
-    .map(
-      (day) => new Date(nextMonth.getFullYear(), nextMonth.getMonth(), nextMonth.getDate() - day)
-    )
+    .map((day) => new Date(nextMonth.getFullYear(), nextMonth.getMonth(), nextMonth.getDate() - day))
     .sort((left, right) => left.getTime() - right.getTime());
   return {
     startDate,
@@ -58,39 +56,23 @@ export const computeTotalDays = ({ startDate }) => {
     totalDays,
     days,
     daysPrevMonth,
-    daysNextMonth
+    daysNextMonth,
   };
 };
 
-export const computeCellPositions = ({
-  days,
-  cellWidth,
-  cellHeight,
-  daySpacing,
-  offset,
-  startDate
-}) => {
+export const computeCellPositions = ({ days, cellWidth, cellHeight, daySpacing, offset, startDate }) => {
   const x = daySpacing;
   const y = daySpacing + offset;
 
   const dataWithCellPosition = days.map((dateValue) => {
-    const {
-      currentColumn,
-      currentRow,
-      firstWeek,
-      year,
-      month,
-      date,
-      day,
-      suggestedKey
-    } = computeGrid({
+    const { currentColumn, currentRow, firstWeek, year, month, date, day, suggestedKey } = computeGrid({
       startDate,
-      date: dateValue
+      date: dateValue,
     });
 
     const coordinates = {
       x: x + daySpacing * currentColumn + cellWidth * currentColumn,
-      y: y + daySpacing * currentRow + cellHeight * currentRow
+      y: y + daySpacing * currentRow + cellHeight * currentRow,
     };
     return {
       coordinates,
@@ -101,7 +83,7 @@ export const computeCellPositions = ({
       date,
       width: cellWidth,
       height: cellHeight,
-      suggestedKey
+      suggestedKey,
     };
   });
   return dataWithCellPosition;
@@ -123,16 +105,16 @@ export const computeWeekdays = ({
   cellWidth,
   daySpacing,
   ticks = [...Array(7).keys()],
-  arrayOfWeekdays = ["S", "M", "T", "W", "T", "F", "S"]
+  arrayOfWeekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
 }) => {
   const sizes = {
     width: cellWidth + daySpacing,
-    height: cellHeight + daySpacing
+    height: cellHeight + daySpacing,
   };
   return ticks.map((day) => ({
     key: sizes.width * day,
     value: arrayOfWeekdays[day],
     y: 0,
-    x: sizes.width * day
+    x: sizes.width * day,
   }));
 };

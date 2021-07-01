@@ -1,0 +1,23 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs/blocks";
+import * as stories from "./datepicker.stories";
+
+<Meta title="Datepicker" />
+
+# Datepicker
+
+<p class="lead">
+  Date picker allows the user to select a specific date or a range of dates. 
+  Follows aria guidelines from <a 
+  href="https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html">
+  w3.org - Date Picker Dialog Example</a> for keyboard navigation.
+</p>
+
+## How to use it
+
+Date picker can be used in forms to schedule events or actions for specific days or in dropdowns to filter page content.
+
+<Canvas>
+  <Story name="Default" story={stories.Default} />
+</Canvas>
+
+<ArgsTable story="Default" />

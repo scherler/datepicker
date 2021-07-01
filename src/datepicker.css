@@ -1,0 +1,83 @@
+.datepicker svg {
+    fill: currentColor
+}
+.datepicker-day:hover rect:not(.text-primary),
+.datepicker-day:focus rect:not(.text-primary){
+  fill: #f2f5f7 !important;
+  pointer-events: all !important;
+}
+.input-group-active input{
+  border: 2px solid #007acc !important;
+  border-right: 0 !important;
+  transition-delay: -0.2s;
+}
+.datepicker .input-group-active .form-control,
+.input-group-unstyled .form-control {
+  border: 2px solid #cfd4d8;
+  border-right: 0 !important;
+  transition-delay: -0.2s;
+}
+.was-validated .datepicker-trigger .form-control:valid{
+  border: 2px solid #cfd4d8;
+  border-right: 0 !important;
+  transition-delay: -0.2s;
+}
+.was-validated .form-control:valid + div > .input-group-text{
+  border-left: 0 !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  transition-delay: -0.2s;
+}
+.was-validated .datepicker-trigger .form-control:invalid:focus{
+  box-shadow: none !important;
+}
+.was-validated .datepicker-trigger .form-control:valid:focus{
+  box-shadow: none !important;
+}
+.was-validated .form-control:invalid + div > .input-group-text{
+  border: 2px solid #e22b2f !important;
+  border-left: 0 !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  transition-delay: -0.2s;
+}
+.input-group-unstyled .input-group-text {
+  border: 2px solid #cfd4d8;
+  border-left: 0;
+  background-color: transparent;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  transition-delay: -0.2s;
+}
+.datepicker .input-group-unstyled:focus-within .form-control{
+  border: 2px solid #007acc !important;
+  border-right: 0 !important;
+  transition-delay: -0.2s;
+}
+.was-validated .datepicker-trigger .form-control:invalid{
+  border: 2px solid #e22b2f !important;
+  border-right: 0 !important;
+  transition-delay: -0.2s;
+}
+
+.input-group-active .input-group-text,
+.input-group-unstyled:focus-within .input-group-text{
+  border: 2px solid #007acc !important;
+  border-left: 0 !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  transition-delay: -0.2s;
+}
+.datepicker {
+  max-width: 264px;
+}
+.datepicker .input-group-prepend svg {
+  fill: #9ba7af;
+}
+.datepicker .input-group-prepend:focus-within{
+  border: 2px dotted #007acc !important;
+}
+.datepicker .input-group-prepend svg:hover,
+.datepicker .input-group-prepend:focus-within svg{
+  fill: #007acc;
+}

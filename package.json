@@ -1,0 +1,42 @@
+{
+  "name": "@scherler/bootstrap-datepicker",
+  "version": "0.0.1",
+  "description": "Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from w3.org - Date Picker Dialog Example for keyboard navigation. Bootstrap based.",
+  "scripts": {
+    "start": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scherler/datepicker.git"
+  },
+  "keywords": [
+    "datepicker",
+    "bootstrap",
+    "svg",
+    "aria"
+  ],
+  "main": "src/index",
+  "author": "CloudBees",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scherler/datepicker/issues"
+  },
+  "dependencies": {
+    "bootstrap": "5.0.2",
+    "d3-time": "3.0.0",
+    "react": "16.13.1",
+    "react-bootstrap": "1.6.1",
+    "react-dom": "16.13.1",
+    "react-icons": "4.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.6",
+    "@storybook/addon-actions": "6.3.2",
+    "@storybook/addon-essentials": "6.3.2",
+    "@storybook/addon-links": "6.3.2",
+    "@storybook/react": "6.3.2",
+    "babel-loader": "8.2.2"
+  },
+  "homepage": "https://github.com/scherler/datepicker#readme"
+}

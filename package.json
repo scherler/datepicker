@@ -1,10 +1,11 @@
 {
   "name": "@scherler/bootstrap-datepicker",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from w3.org - Date Picker Dialog Example for keyboard navigation. Bootstrap based.",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint . --ext .ts,.tsx,.jsx,.js --max-warnings 0 --cache"
   },
   "repository": {
     "type": "git",
@@ -16,11 +17,16 @@
     "svg",
     "aria"
   ],
-  "main": "src/index",
+  "main": "src",
   "author": "CloudBees",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/scherler/datepicker/issues"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,scss}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "bootstrap": "5.0.2",
@@ -31,12 +37,36 @@
     "react-icons": "4.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
+    "@babel/cli": "7.12.16",
+    "@babel/core": "7.12.10",
+    "@babel/plugin-proposal-class-properties": "7.12.13",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/preset-env": "7.12.16",
+    "@babel/preset-react": "7.12.10",
+    "@babel/preset-typescript": "7.12.7",
     "@storybook/addon-actions": "6.3.2",
     "@storybook/addon-essentials": "6.3.2",
     "@storybook/addon-links": "6.3.2",
     "@storybook/react": "6.3.2",
-    "babel-loader": "8.2.2"
+    "babel-loader": "8.2.2",
+    "@types/react": "16.14.2",
+    "@types/react-dom": "16.9.10",
+    "@types/react-router-dom": "5.1.7",
+    "eslint": "7.13.0",
+    "eslint-config-airbnb-typescript": "4.0.1",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-jest": "23.20.0",
+    "eslint-plugin-jest-playwright": "0.2.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "2.5.1",
+    "husky": "4.3.8",
+    "lint-staged": "10.5.3",
+    "prettier": "2.2.1",
+    "typescript": "3.8.3"
   },
   "homepage": "https://github.com/scherler/datepicker#readme"
 }

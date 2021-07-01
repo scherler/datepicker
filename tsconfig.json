@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["es2017", "es6", "dom"],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": ["node", "jest","jest-playwright-preset", "expect-playwright"],
+    "resolveJsonModule": true,
+    "baseUrl": "."
+  },
+  "include": [
+    "./__mocks__/**/*"
+  ],
+  "exclude": ["node_modules", "**/node_modules","dist", "webpack", "tests/*", "**/*.spec.ts", "**/*.spec.tsx"]
+}

@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "pre-commit": "yarn lint-staged --allow-empty",
+    "skip:pre-push": "yarn lint"
+  }
+}

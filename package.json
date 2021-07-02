@@ -7,7 +7,7 @@
     "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prettier": "prettier --write src/**/*.{tsx,ts}",
-    "lint": "eslint . --ext .ts,.tsx,.jsx,.js --max-warnings 0 --cache",
+    "lint": "eslint ./src --ext .ts,.tsx,.jsx,.js --max-warnings 0 --cache",
     "test": "yarn lint && yarn tsc",
     "tsc": "tsc",
     "analyze-bundle": "ANALYZE_BUNDLE=true yarn build"

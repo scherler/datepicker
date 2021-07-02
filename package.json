@@ -1,6 +1,6 @@
 {
   "name": "@scherler/bootstrap-datepicker",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from w3.org - Date Picker Dialog Example for keyboard navigation. Bootstrap based.",
   "scripts": {
     "build": "webpack --mode production && yarn tsc",
@@ -22,7 +22,7 @@
     "svg",
     "aria"
   ],
-  "main": "src",
+  "main": "dist/index.js",
   "author": "CloudBees",
   "license": "ISC",
   "bugs": {
@@ -61,7 +61,10 @@
     "@types/react-router-dom": "5.1.7",
     "@typescript-eslint/eslint-plugin": "2.31.0",
     "@typescript-eslint/parser": "2.34.0",
-    "babel-loader": "8.2.2",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^5.2.6",
     "eslint": "7.13.0",
     "eslint-config-airbnb-typescript": "4.0.1",
     "eslint-config-prettier": "6.15.0",
@@ -76,8 +79,11 @@
     "husky": "4.3.8",
     "jest": "26.6.3",
     "lint-staged": "10.5.3",
+    "postcss-loader": "^6.1.1",
     "prettier": "2.2.1",
+    "style-loader": "^3.0.0",
     "typescript": "3.8.3",
+    "webpack": "^5.42.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2"
   },

@@ -1,7 +1,17 @@
 const path = require('path'); // eslint-disable-line @typescript-eslint/no-var-requires
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { ANALYZE_BUNDLE } = process.env;
-const plugins = [];
+const plugins = [
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: 'src/datepicker.css',
+        to: 'datepicker.css',
+      },
+    ],
+  }),
+];
 if (ANALYZE_BUNDLE === 'true') {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   plugins.push(new BundleAnalyzerPlugin());

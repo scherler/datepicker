@@ -5,6 +5,7 @@ import { DatepickerTrigger } from './DatepickerTrigger';
 import defaultProps from './DefaultProperties';
 import { generateSuggestedKey } from './helper';
 
+import './datepicker.css';
 export interface IDatepicker {
   width?: number;
   height?: number;

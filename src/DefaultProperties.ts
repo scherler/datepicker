@@ -1,16 +1,17 @@
 export default {
   squares: true,
   addBuffer: false,
+  fixedSize: 32,
   isRange: false,
   autoclose: 1000,
-  width: 240,
+  width: 220,
   height: 220,
-  daySpacing: 4,
+  daySpacing: 0,
   offset: 0,
   dayRadius: 0,
   dayBorderWidth: 0,
-  dayBorderColor: "transparent",
-  todayBorderWidth: 2,
+  dayBorderColor: 'transparent',
+  todayBorderWidth: 1,
   todayBorderRadius: 3,
-  todayBorderColor: "rgb(234, 239, 242)"
+  todayBorderColor: 'rgb(234, 239, 242)',
 };

@@ -10,7 +10,7 @@
   "extends": [
     "airbnb-typescript",
     "prettier",
-    "prettier/@typescript-eslint",
+    "prettier/@typescript-eslint"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -34,6 +34,11 @@
         "moduleDirectory": ["node_modules"]
       },
       "alias": {
+        "map": [
+            [
+              "./src"
+            ]
+          ],
         "extensions": [
           ".ts",
           ".tsx",

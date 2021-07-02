@@ -1,12 +1,31 @@
-import React from "react";
-import { Day } from "./Day";
-import {
-  computeTotalDays,
-  computeCellSize,
-  computeCellPositions,
-  computeWeekdays
-} from "./compute/datePicker";
-import { generateSuggestedKey, navigate } from "./helper";
+import React from 'react';
+import { Day } from './Day';
+import { computeTotalDays, computeCellSize, computeCellPositions, computeWeekdays } from './compute/datePicker';
+import { generateSuggestedKey, navigate } from './helper';
+
+export interface IDatepickerCalendar {
+  width: number;
+  height: number;
+  daySpacing: number;
+  offset: number;
+  startDate: Date;
+  autoclose: number;
+  currentDate: Date;
+  setShowPicker: (state: boolean) => void;
+  setCurrentDate: (date: Date) => void;
+  isRange: boolean;
+  setSelection: (range: number[]) => void;
+  selection: number[];
+  dayRadius: number;
+  dayBorderWidth: number;
+  dayBorderColor: string;
+  todayBorderWidth: number;
+  todayBorderRadius: number;
+  todayBorderColor: string;
+  fixedSize: number;
+  addBuffer: boolean;
+  squares: boolean;
+}
 
 export const DatepickerCalendar = ({
   currentDate,
@@ -29,19 +48,13 @@ export const DatepickerCalendar = ({
   fixedSize,
   setCurrentDate,
   addBuffer,
-  squares
-}) => {
-  const {
-    totalDays,
-    days: daysInMonth,
-    firstOfMonth,
-    daysNextMonth,
-    daysPrevMonth
-  } = computeTotalDays({ startDate });
+  squares,
+}: IDatepickerCalendar) => {
+  const { totalDays, days: daysInMonth, firstOfMonth, daysNextMonth, daysPrevMonth } = computeTotalDays({ startDate });
   const today = new Date().setHours(0, 0, 0, 0);
 
-  const addDate = (date) => {
-    let dates;
+  const addDate = (date: Date) => {
+    let dates: number[];
     if (isRange && selection.length === 1) {
       dates = [...selection, date.getTime()].sort((left, right) => left - right);
     } else {
@@ -63,11 +76,11 @@ export const DatepickerCalendar = ({
         offset,
         daySpacing,
         width,
-        height
+        height,
       })
     : {
         cellHeight: fixedSize,
-        cellWidth: fixedSize
+        cellWidth: fixedSize,
       };
 
   const dayArray = addBuffer ? [...daysPrevMonth, ...daysInMonth, ...daysNextMonth] : daysInMonth;
@@ -77,17 +90,17 @@ export const DatepickerCalendar = ({
     offset: offset + 30, // to make room for the weekDay legend
     cellHeight,
     cellWidth,
-    daySpacing
+    daySpacing,
   });
+
   const weekdayLegends = computeWeekdays({
     cellHeight,
     cellWidth,
-    daySpacing
+    daySpacing,
   });
-  const navigation = (innerDays) => {
+  const navigation = (daysCount: number) => {
     const date = new Date(startDate);
-    date.setHours(0, 0, 0, 0);
-    switch (innerDays) {
+    switch (daysCount) {
       case -0.1:
         date.setDate(date.getDate() - date.getDay());
         setCurrentDate(date);
@@ -113,15 +126,15 @@ export const DatepickerCalendar = ({
         setCurrentDate(date);
         break;
       default:
-        date.setDate(date.getDate() + innerDays);
+        date.setDate(date.getDate() + daysCount);
         setCurrentDate(date);
         break;
     }
     setTimeout(() => {
       const key = generateSuggestedKey(date);
-      const el = document.getElementById(key);
+      const el = document.getElementById(key) as HTMLElement;
       if (el) {
-        el.setAttribute("aria-selected", "true");
+        el.setAttribute('aria-selected', 'true');
         el.focus();
       }
     }, 1);
@@ -135,51 +148,45 @@ export const DatepickerCalendar = ({
         {...navigate({
           navigation,
           exec: () => addDate(currentDate),
-          close: () => setShowPicker(false)
+          close: () => setShowPicker(false),
         })}
         width={width}
-        height={height}
-      >
+        height={height}>
         {weekdayLegends.map((legend) => (
-          <text
-            className="text-gray-light small"
-            height={50}
-            key={legend.key}
-            x={legend.x + 13}
-            y={legend.y + 25}
-          >
+          <text className="text-gray-light small" height={50} key={legend.key} x={legend.x + 13} y={legend.y + 25}>
             {legend.value}
           </text>
         ))}
-        {days.map((day) => {
-          if (firstOfMonth.getMonth() !== day.date.getMonth()) {
-            day.classes = {
-              rect: "text-white",
-              text: "text-secondary small"
+        {days.map((innerDay) => {
+          const iDay = { ...innerDay };
+          if (firstOfMonth.getMonth() !== iDay.date.getMonth()) {
+            iDay.classes = {
+              rect: 'text-white',
+              text: 'text-secondary small',
             };
           }
-          const timestamp = day.date.getTime();
+          const timestamp = iDay.date.getTime();
           // today needs a border
-          day.borderWidth = today === timestamp ? todayBorderWidth : dayBorderWidth;
-          day.borderColor = today === timestamp ? todayBorderColor : dayBorderColor;
+          iDay.borderWidth = today === timestamp ? todayBorderWidth : dayBorderWidth;
+          iDay.borderColor = today === timestamp ? todayBorderColor : dayBorderColor;
           if (selection.includes(timestamp)) {
-            day.classes = {
-              rect: "text-primary",
-              text: "text-white small"
+            iDay.classes = {
+              rect: 'text-primary',
+              text: 'text-white small',
             };
           } else if (timestamp > selection[0] && timestamp < selection[1]) {
-            day.classes = {
-              rect: "text-info",
-              text: "text-white small"
+            iDay.classes = {
+              rect: 'text-info',
+              text: 'text-white small',
             };
           }
-          day.coordinates.rx = today === timestamp ? todayBorderRadius : dayRadius;
-          day.coordinates.ry = today === timestamp ? todayBorderRadius : dayRadius;
-          day.onClick = () => {
-            console.debug("You clicked ", day);
-            addDate(day.date);
+          iDay.coordinates.rx = today === timestamp ? todayBorderRadius : dayRadius;
+          iDay.coordinates.ry = today === timestamp ? todayBorderRadius : dayRadius;
+          iDay.onClick = () => {
+            console.debug('You clicked ', iDay);
+            addDate(iDay.date);
           };
-          return <Day key={day.suggestedKey} {...{ ...day }} />;
+          return <Day key={iDay.suggestedKey} {...{ ...iDay }} />;
         })}
       </svg>
     </div>

@@ -1,11 +1,69 @@
 import { timeMonth, timeWeek } from 'd3-time';
 import { generateSuggestedKey } from '../helper';
 
+interface BaseProps {
+  daySpacing: number;
+  offset: number;
+}
+
+interface TotalDays {
+  startDate: Date;
+}
+
+interface Formater {
+  formater?: (data: DayData) => string;
+}
+
+export interface DayData extends Formater {
+  coordinates: {
+    x: number;
+    y: number;
+    rx?: number;
+    ry?: number;
+  };
+  classes?: {
+    rect?: string;
+    text?: string;
+  };
+  suggestedKey: string;
+  date: Date;
+  color: string;
+  firstWeek: number;
+  day: number;
+  month: number;
+  year: number;
+  width: number;
+  height: number;
+  borderWidth: number;
+  borderColor?: string;
+  onClick?: (event: any) => void | undefined;
+}
+
+interface CellSize extends BaseProps {
+  width: number;
+  height: number;
+  totalDays: number;
+  squares: boolean;
+}
+
+interface CellPositions extends BaseProps, TotalDays {
+  cellWidth: number;
+  cellHeight: number;
+  days: Date[];
+}
+interface ComputeWeekdays {
+  cellWidth: number;
+  cellHeight: number;
+  daySpacing: number;
+  ticks?: number[];
+  arrayOfWeekdays?: string[];
+}
+
 /**
  * Compute day cell size according to
  * current context.
  */
-export const computeCellSize = ({ daySpacing, offset, totalDays, width, height, squares }) => {
+export const computeCellSize = ({ daySpacing, offset, totalDays, width, height, squares }: CellSize) => {
   const daysInRange = 7;
   const columns = daysInRange;
   const rows = Math.ceil(totalDays / daysInRange);
@@ -23,8 +81,8 @@ export const computeCellSize = ({ daySpacing, offset, totalDays, width, height, 
   };
 };
 
-export const computeMonthArray = ({ daysInMonth, startDate }) => {
-  const days = [];
+export const computeMonthArray = ({ daysInMonth, startDate }: { daysInMonth: number; startDate: Date }) => {
+  const days: Date[] = [];
   let index = 1;
   while (index <= daysInMonth) {
     days.push(new Date(startDate.getFullYear(), startDate.getMonth(), index));
@@ -33,7 +91,7 @@ export const computeMonthArray = ({ daysInMonth, startDate }) => {
   return days;
 };
 
-export const computeTotalDays = ({ startDate }) => {
+export const computeTotalDays = ({ startDate }: TotalDays) => {
   const firstOfMonth = timeMonth(startDate);
 
   const lastOfMonth = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0);
@@ -42,12 +100,12 @@ export const computeTotalDays = ({ startDate }) => {
   // buffer days before and after
   const prevMonth = new Date(firstOfMonth);
   prevMonth.setDate(1 - firstOfMonth.getDay());
-  const daysPrevMonth = [...Array(firstOfMonth.getDay()).keys()].map(
+  const daysPrevMonth = Array(firstOfMonth.getDay()).map(
     (day) => new Date(prevMonth.getFullYear(), prevMonth.getMonth(), prevMonth.getDate() + day)
   );
   const nextMonth = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 1);
   nextMonth.setDate(6 - lastOfMonth.getDay());
-  const daysNextMonth = [...Array(6 - lastOfMonth.getDay()).keys()]
+  const daysNextMonth = Array(6 - lastOfMonth.getDay())
     .map((day) => new Date(nextMonth.getFullYear(), nextMonth.getMonth(), nextMonth.getDate() - day))
     .sort((left, right) => left.getTime() - right.getTime());
   return {
@@ -60,11 +118,29 @@ export const computeTotalDays = ({ startDate }) => {
   };
 };
 
-export const computeCellPositions = ({ days, cellWidth, cellHeight, daySpacing, offset, startDate }) => {
+export const computeGrid = ({ startDate, date }: { startDate: Date; date: Date }) => {
+  const firstWeek = timeWeek.count(startDate, date);
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const currentColumn = date.getDay();
+  const currentRow = firstWeek;
+  const suggestedKey = generateSuggestedKey(date);
+  return { currentColumn, year, currentRow, firstWeek, month, date, day, suggestedKey };
+};
+
+export const computeCellPositions = ({
+  days,
+  cellWidth,
+  cellHeight,
+  daySpacing,
+  offset,
+  startDate,
+}: CellPositions): DayData[] => {
   const x = daySpacing;
   const y = daySpacing + offset;
 
-  const dataWithCellPosition = days.map((dateValue) => {
+  const dataWithCellPosition: DayData[] = days.map((dateValue) => {
     const { currentColumn, currentRow, firstWeek, year, month, date, day, suggestedKey } = computeGrid({
       startDate,
       date: dateValue,
@@ -84,29 +160,18 @@ export const computeCellPositions = ({ days, cellWidth, cellHeight, daySpacing, 
       width: cellWidth,
       height: cellHeight,
       suggestedKey,
-    };
+    } as DayData;
   });
   return dataWithCellPosition;
-};
-
-export const computeGrid = ({ startDate, date }) => {
-  const firstWeek = timeWeek.count(startDate, date);
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentColumn = date.getDay();
-  const currentRow = firstWeek;
-  const suggestedKey = generateSuggestedKey(date);
-  return { currentColumn, year, currentRow, firstWeek, month, date, day, suggestedKey };
 };
 
 export const computeWeekdays = ({
   cellHeight,
   cellWidth,
   daySpacing,
-  ticks = [...Array(7).keys()],
+  ticks = Array(7),
   arrayOfWeekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-}) => {
+}: ComputeWeekdays) => {
   const sizes = {
     width: cellWidth + daySpacing,
     height: cellHeight + daySpacing,

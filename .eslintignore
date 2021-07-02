@@ -1,2 +1,11 @@
 babel.config.js
 node_modules
+*.test.ts
+*.scss.d.ts
+*.test.tsx
+*.spec.ts
+*.mock.tsx
+*.spec.tsx
+*.stories.jsx
+build
+webpack.config.js

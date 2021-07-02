@@ -18,12 +18,12 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "types": ["node", "jest","jest-playwright-preset", "expect-playwright"],
+    "types": ["node", "jest"],
     "resolveJsonModule": true,
     "baseUrl": "."
   },
   "include": [
-    "./__mocks__/**/*"
+    "./src/**/*"
   ],
   "exclude": ["node_modules", "**/node_modules","dist", "webpack", "tests/*", "**/*.spec.ts", "**/*.spec.tsx"]
 }

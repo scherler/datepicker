@@ -1,15 +1,24 @@
-const SUBMIT = [" ", "Enter"];
+const SUBMIT = [' ', 'Enter'];
 
-export const navigate = ({ navigation, exec, close }) => {
+export const navigate = ({
+  navigation,
+  exec,
+  close,
+}: {
+  navigation: (days: number) => void;
+  exec: () => void;
+  close: () => void;
+}) => {
   return {
-    onKeyDown: (event) => {
+    onKeyDown: (event: any) => {
+      // KeyboardEvent does not work since the svg later complains
       const key = event.key;
       switch (key) {
-        case "Home":
+        case 'Home':
           event.preventDefault();
           navigation(-0.1);
           break;
-        case "PageUp":
+        case 'PageUp':
           event.preventDefault();
           if (event.shiftKey) {
             navigation(360);
@@ -17,7 +26,7 @@ export const navigate = ({ navigation, exec, close }) => {
             navigation(30);
           }
           break;
-        case "PageDown":
+        case 'PageDown':
           event.preventDefault();
           if (event.shiftKey) {
             navigation(-360);
@@ -25,63 +34,72 @@ export const navigate = ({ navigation, exec, close }) => {
             navigation(-30);
           }
           break;
-        case "End":
+        case 'End':
           event.preventDefault();
           navigation(0.1);
           break;
-        case "ArrowUp":
+        case 'ArrowUp':
           event.preventDefault();
           navigation(-7);
           break;
-        case "ArrowDown":
+        case 'ArrowDown':
           event.preventDefault();
           navigation(7);
           break;
-        case "ArrowLeft":
+        case 'ArrowLeft':
           event.preventDefault();
           navigation(-1);
           break;
-        case "ArrowRight":
+        case 'ArrowRight':
           event.preventDefault();
           navigation(1);
           break;
-        case "Escape":
+        case 'Escape':
           event.preventDefault();
           close();
           break;
         default:
-          const shouldExec = SUBMIT.filter((innerKey) => innerKey === key).length > 0;
-          if (shouldExec) {
+          if (SUBMIT.filter((innerKey) => innerKey === key).length > 0) {
             event.preventDefault();
             exec();
           }
           break;
       }
-    }
+    },
   };
 };
 
-export const buttonize = (action, keys = SUBMIT, { tabIndex = 0, role = "button" } = {}) => {
+export const buttonize = (
+  action: (event: any) => void,
+  keys: string[] = SUBMIT,
+  {
+    tabIndex = 0,
+    role = 'button',
+  }: {
+    tabIndex?: number;
+    role?: string;
+  } = {}
+) => {
   return {
     role,
     tabIndex,
     onClick: action,
-    onKeyDown: (event) => {
+    onKeyDown: (event: any) => {
       const key = event.key;
       const shouldExec = keys.filter((innerKey) => innerKey === key).length > 0;
       if (shouldExec) {
         event.preventDefault();
         action(event);
       }
-    }
+    },
   };
 };
 
-export const generateSuggestedKey = (date) =>
+export const generateSuggestedKey = (date: Date) =>
   `datepicker-day-${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 
 export default {
   buttonize,
   generateSuggestedKey,
-  navigate
+  navigate,
 };

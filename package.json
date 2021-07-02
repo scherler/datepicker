@@ -3,10 +3,14 @@
   "version": "0.0.7",
   "description": "Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from w3.org - Date Picker Dialog Example for keyboard navigation. Bootstrap based.",
   "scripts": {
+    "build": "webpack --mode production && yarn tsc",
     "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prettier": "prettier --write src/**/*.{jsx,js}",
-    "lint": "eslint . --ext .ts,.tsx,.jsx,.js --max-warnings 0 --cache"
+    "prettier": "prettier --write src/**/*.{tsx,ts}",
+    "lint": "eslint . --ext .ts,.tsx,.jsx,.js --max-warnings 0 --cache",
+    "test": "yarn lint && yarn tsc",
+    "tsc": "tsc",
+    "analyze-bundle": "ANALYZE_BUNDLE=true yarn build"
   },
   "repository": {
     "type": "git",
@@ -42,6 +46,7 @@
     "@babel/core": "7.12.10",
     "@babel/plugin-proposal-class-properties": "7.12.13",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "7.12.16",
     "@babel/preset-react": "7.12.10",
     "@babel/preset-typescript": "7.12.7",
@@ -49,13 +54,14 @@
     "@storybook/addon-essentials": "6.3.2",
     "@storybook/addon-links": "6.3.2",
     "@storybook/react": "6.3.2",
-    "babel-loader": "8.2.2",
+    "@types/d3": "6.3.0",
     "@types/jest": "26.0.20",
     "@types/react": "16.14.2",
     "@types/react-dom": "16.9.10",
     "@types/react-router-dom": "5.1.7",
     "@typescript-eslint/eslint-plugin": "2.31.0",
     "@typescript-eslint/parser": "2.34.0",
+    "babel-loader": "8.2.2",
     "eslint": "7.13.0",
     "eslint-config-airbnb-typescript": "4.0.1",
     "eslint-config-prettier": "6.15.0",
@@ -71,7 +77,9 @@
     "jest": "26.6.3",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.7.2"
   },
   "homepage": "https://github.com/scherler/datepicker#readme"
 }

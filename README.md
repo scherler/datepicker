@@ -42,6 +42,9 @@ yarn test
 ```
 
 # Dependencies
+
+Make sure you are supporting the following libs
+
 ```
   "dependencies": {
     "bootstrap": "5.0.2",

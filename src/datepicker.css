@@ -16,6 +16,11 @@ background-color: #fff;
   fill: #f2f5f7 !important;
   pointer-events: all !important;
 }
+.datepicker-day:hover text,
+.datepicker-day:focus text{
+  color: black !important;
+  pointer-events: all !important;
+}
 .input-group-active input{
   border: 2px solid #007acc !important;
   border-right: 0 !important;

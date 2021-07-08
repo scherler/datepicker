@@ -100,14 +100,17 @@ export const computeTotalDays = ({ startDate }: TotalDays) => {
   // buffer days before and after
   const prevMonth = new Date(firstOfMonth);
   prevMonth.setDate(1 - firstOfMonth.getDay());
-  const daysPrevMonth = Array(firstOfMonth.getDay()).map(
-    (day) => new Date(prevMonth.getFullYear(), prevMonth.getMonth(), prevMonth.getDate() + day)
+  const daysPrevMonth = Array.from(
+    Array(firstOfMonth.getDay()),
+    (_day, index) => new Date(prevMonth.getFullYear(), prevMonth.getMonth(), prevMonth.getDate() + index)
   );
   const nextMonth = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 1);
   nextMonth.setDate(6 - lastOfMonth.getDay());
-  const daysNextMonth = Array(6 - lastOfMonth.getDay())
-    .map((day) => new Date(nextMonth.getFullYear(), nextMonth.getMonth(), nextMonth.getDate() - day))
-    .sort((left, right) => left.getTime() - right.getTime());
+  const daysNextMonth = Array.from(
+    Array(6 - lastOfMonth.getDay()),
+    (_day, index) => new Date(nextMonth.getFullYear(), nextMonth.getMonth(), nextMonth.getDate() - index)
+  );
+  daysNextMonth.sort((left, right) => left.getTime() - right.getTime());
   return {
     startDate,
     firstOfMonth,

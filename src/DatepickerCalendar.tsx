@@ -103,33 +103,27 @@ export const DatepickerCalendar = ({
     switch (daysCount) {
       case -0.1:
         date.setDate(date.getDate() - date.getDay());
-        setCurrentDate(date);
         break;
       case 0.1:
         date.setDate(date.getDate() + date.getDay());
-        setCurrentDate(date);
         break;
       case 30:
         date.setMonth(date.getMonth() + 1);
-        setCurrentDate(date);
         break;
       case -30:
         date.setMonth(date.getMonth() - 1);
-        setCurrentDate(date);
         break;
       case 360:
         date.setFullYear(date.getFullYear() + 1);
-        setCurrentDate(date);
         break;
       case -360:
         date.setFullYear(date.getFullYear() - 1);
-        setCurrentDate(date);
         break;
       default:
         date.setDate(date.getDate() + daysCount);
-        setCurrentDate(date);
         break;
     }
+    setCurrentDate(date);
     setTimeout(() => {
       const key = generateSuggestedKey(date);
       const el = document.getElementById(key) as HTMLElement;

@@ -1,6 +1,6 @@
 {
   "name": "@scherler/bootstrap-datepicker",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from w3.org - Date Picker Dialog Example for keyboard navigation. Bootstrap based.",
   "scripts": {
     "build": "webpack --mode production && yarn tsc",

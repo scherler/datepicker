@@ -26,6 +26,9 @@ Please see the storybook story for more config options and preview.
 ```
 yarn start
 ```
+![image](https://user-images.githubusercontent.com/596701/124996911-13d72280-e04a-11eb-9d89-e45fef166d90.png)
+![image](https://user-images.githubusercontent.com/596701/124997659-54836b80-e04b-11eb-8f92-1a010bb48dd2.png)
+
 
 ## Build
 ```

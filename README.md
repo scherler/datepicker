@@ -1,6 +1,6 @@
   # Description
   
-  Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from [w3.org - Date Picker Dialog Example for keyboard navigation](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html). Bootstrap and typescript based, build  with webpack.
+  Date picker allows the user to select a specific date or a range of dates. Follows aria guidelines from [w3.org - Date Picker Dialog Example for keyboard navigation](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html). React component based on bootstrap, typescript and SVG, build with webpack.
 
 # Install
 

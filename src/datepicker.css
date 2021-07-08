@@ -1,6 +1,16 @@
 .datepicker svg {
     fill: currentColor
 }
+.datepicker {
+    position: relative
+}
+.datepicker-body{
+    position: absolute;
+right: 0;
+z-index: 10000;
+background-color: #fff;
+
+}
 .datepicker-day:hover rect:not(.text-primary),
 .datepicker-day:focus rect:not(.text-primary){
   fill: #f2f5f7 !important;

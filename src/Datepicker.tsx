@@ -6,6 +6,7 @@ import defaultProps from './DefaultProperties';
 import { generateSuggestedKey } from './helper';
 
 import './datepicker.css';
+
 export interface IDatepicker {
   width?: number;
   height?: number;
@@ -14,6 +15,7 @@ export interface IDatepicker {
   startDate?: Date;
   isRange?: boolean;
   autoclose?: number;
+  callback?: (timestamp: number[]) => void;
 }
 
 export const Datepicker = (props: IDatepicker) => {
@@ -23,11 +25,19 @@ export const Datepicker = (props: IDatepicker) => {
   };
 
   const [currentDate, setCurrentDate] = useState<Date>(props.startDate || new Date());
-  const [selection, setSelection] = useState<number[]>([]);
+  const [selection, setSelectionBase] = useState<number[]>([]);
   // will decide whether we show the popup or not
   const [showPicker, setShowPickerBase] = useState<boolean>(false);
   const { isRange } = mergedProps;
   const ref = useRef(null);
+
+  const setSelection = useCallback(
+    (timestamps: number[]) => {
+      props.callback?.(timestamps);
+      setSelectionBase(timestamps);
+    },
+    [selection, props.callback]
+  );
 
   const setShowPicker = useCallback(
     (state: boolean) => {

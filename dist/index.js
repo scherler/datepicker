@@ -55,7 +55,7 @@
             });
           a.push([
             e.id,
-            '.datepicker svg {\n    fill: currentColor\n}\n.datepicker-day:hover rect:not(.text-primary),\n.datepicker-day:focus rect:not(.text-primary){\n  fill: #f2f5f7 !important;\n  pointer-events: all !important;\n}\n.input-group-active input{\n  border: 2px solid #007acc !important;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.datepicker .input-group-active .form-control,\n.input-group-unstyled .form-control {\n  border: 2px solid #cfd4d8;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.was-validated .datepicker-trigger .form-control:valid{\n  border: 2px solid #cfd4d8;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.was-validated .form-control:valid + div > .input-group-text{\n  border-left: 0 !important;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.was-validated .datepicker-trigger .form-control:invalid:focus{\n  box-shadow: none !important;\n}\n.was-validated .datepicker-trigger .form-control:valid:focus{\n  box-shadow: none !important;\n}\n.was-validated .form-control:invalid + div > .input-group-text{\n  border: 2px solid #e22b2f !important;\n  border-left: 0 !important;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.input-group-unstyled .input-group-text {\n  border: 2px solid #cfd4d8;\n  border-left: 0;\n  background-color: transparent;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.datepicker .input-group-unstyled:focus-within .form-control{\n  border: 2px solid #007acc !important;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.was-validated .datepicker-trigger .form-control:invalid{\n  border: 2px solid #e22b2f !important;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n\n.input-group-active .input-group-text,\n.input-group-unstyled:focus-within .input-group-text{\n  border: 2px solid #007acc !important;\n  border-left: 0 !important;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.datepicker {\n  max-width: 264px;\n}\n.datepicker .input-group-prepend svg {\n  fill: #9ba7af;\n}\n.datepicker .input-group-prepend:focus-within{\n  border: 2px dotted #007acc !important;\n}\n.datepicker .input-group-prepend svg:hover,\n.datepicker .input-group-prepend:focus-within svg{\n  fill: #007acc;\n}\n',
+            '.datepicker svg {\n    fill: currentColor\n}\n.datepicker {\n    position: relative\n}\n.datepicker-body{\n    position: absolute;\nright: 0;\nz-index: 10000;\nbackground-color: #fff;\n\n}\n.datepicker-day:hover rect:not(.text-primary),\n.datepicker-day:focus rect:not(.text-primary){\n  fill: #f2f5f7 !important;\n  pointer-events: all !important;\n}\n.input-group-active input{\n  border: 2px solid #007acc !important;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.datepicker .input-group-active .form-control,\n.input-group-unstyled .form-control {\n  border: 2px solid #cfd4d8;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.was-validated .datepicker-trigger .form-control:valid{\n  border: 2px solid #cfd4d8;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.was-validated .form-control:valid + div > .input-group-text{\n  border-left: 0 !important;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.was-validated .datepicker-trigger .form-control:invalid:focus{\n  box-shadow: none !important;\n}\n.was-validated .datepicker-trigger .form-control:valid:focus{\n  box-shadow: none !important;\n}\n.was-validated .form-control:invalid + div > .input-group-text{\n  border: 2px solid #e22b2f !important;\n  border-left: 0 !important;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.input-group-unstyled .input-group-text {\n  border: 2px solid #cfd4d8;\n  border-left: 0;\n  background-color: transparent;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.datepicker .input-group-unstyled:focus-within .form-control{\n  border: 2px solid #007acc !important;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n.was-validated .datepicker-trigger .form-control:invalid{\n  border: 2px solid #e22b2f !important;\n  border-right: 0 !important;\n  transition-delay: -0.2s;\n}\n\n.input-group-active .input-group-text,\n.input-group-unstyled:focus-within .input-group-text{\n  border: 2px solid #007acc !important;\n  border-left: 0 !important;\n  border-top-right-radius: 4px !important;\n  border-bottom-right-radius: 4px !important;\n  transition-delay: -0.2s;\n}\n.datepicker {\n  max-width: 264px;\n}\n.datepicker .input-group-prepend svg {\n  fill: #9ba7af;\n}\n.datepicker .input-group-prepend:focus-within{\n  border: 2px dotted #007acc !important;\n}\n.datepicker .input-group-prepend svg:hover,\n.datepicker .input-group-prepend:focus-within svg{\n  fill: #007acc;\n}\n',
             '',
           ]);
           const o = a;
@@ -804,7 +804,7 @@
               k = e.squares;
             return t().createElement(
               'div',
-              { className: 'd-flex justify-content-between' },
+              { className: 'd-flex justify-content-between datepicker-body' },
               t().createElement(
                 'div',
                 {
@@ -1158,6 +1158,13 @@
             m = (0, e.useRef)(null),
             g = (0, e.useCallback)(
               function (e) {
+                var t;
+                null === (t = n.callback) || void 0 === t || t.call(n, e), d(e);
+              },
+              [s, n.callback]
+            ),
+            v = (0, e.useCallback)(
+              function (e) {
                 y(e),
                   e &&
                     setTimeout(function () {
@@ -1174,9 +1181,9 @@
             t().createElement(j, {
               selection: s,
               showPicker: f,
-              setShowPicker: g,
+              setShowPicker: v,
               isRange: h,
-              setSelection: d,
+              setSelection: g,
               setCurrentDate: c,
             }),
             t().createElement(
@@ -1189,8 +1196,8 @@
                   currentDate: i,
                   setCurrentDate: c,
                   selection: s,
-                  setSelection: d,
-                  setShowPicker: g,
+                  setSelection: g,
+                  setShowPicker: v,
                 })
               )
             )

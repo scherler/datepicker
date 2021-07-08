@@ -47,7 +47,7 @@ export const DatepickerBody = ({
   addBuffer,
   squares,
 }: IDatepickerBody) => (
-  <div className="d-flex justify-content-between">
+  <div className="d-flex justify-content-between datepicker-body">
     <div
       role="dialog"
       aria-modal="true"
